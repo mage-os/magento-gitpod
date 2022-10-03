@@ -23,7 +23,7 @@ tasks:
     init: sudo chown -R gitpod:gitpod /home/gitpod/.config/composer;
           cd $GITPOD_REPO_ROOT &&
           composer config -g -a http-basic.repo.magento.com ${MAGENTO_COMPOSER_AUTH_USER} ${MAGENTO_COMPOSER_AUTH_PASS} &&
-          composer create-project --no-interaction --no-progress --repository-url=https://mirror.mage-os.org/ magento/project-community-edition=${MAGENTO_VERSION} magento2 &&
+          composer create-project --no-interaction --no-progress --stability alpha --repository-url=https://upstream-nightly.mage-os.org magento/project-community-edition magento2 &&
           cd magento2 && cp -avr .* $GITPOD_REPO_ROOT;
           cd $GITPOD_REPO_ROOT && rm -r -f magento2 && git checkout -- .gitignore;
     command: sudo sed -i 's#$GITPOD_REPO_ROOT#'$GITPOD_REPO_ROOT'#g' /etc/nginx/nginx.conf &&
